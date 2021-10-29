@@ -3,12 +3,22 @@ package com.example.android.politicalpreparedness.election
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 
 class VoterInfoFragment : Fragment() {
+
+    private val viewModel by viewModels<VoterInfoViewModel>()
+    private lateinit var binding: FragmentVoterInfoBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val root = inflater.inflate(R.layout.fragment_voter_info, container, false)
+        binding = FragmentVoterInfoBinding.bind(root).apply {
+            this.viewmodel = viewModel
+        }
 
         //TODO: Add ViewModel values and create ViewModel
 
@@ -24,6 +34,10 @@ class VoterInfoFragment : Fragment() {
 
         //TODO: Handle save button UI state
         //TODO: cont'd Handle save button clicks
+
+        // Set the lifecycle owner to the lifecycle of the view
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        return binding.root
 
     }
 
