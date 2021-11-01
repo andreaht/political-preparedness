@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.example.android.politicalpreparedness.election.ElectionsViewModel" />
     </data>
 
@@ -30,6 +30,8 @@
             android:id="@+id/upcoming_elections_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:listData="@{viewModel.upcomingElections}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/saved_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +51,7 @@
             android:id="@+id/saved_elections_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

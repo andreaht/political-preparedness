@@ -10,11 +10,27 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
+import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
+import com.example.android.politicalpreparedness.election.adapter.ElectionListener
+import timber.log.Timber
 
 class ElectionsFragment: Fragment() {
 
-    private lateinit var viewModel : ElectionsViewModel
-    private lateinit var binding: FragmentElectionBinding
+    /**
+     * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
+     * lazy. This requires that viewModel not be referenced before onViewCreated(), which we
+     * do in this Fragment.
+     */
+    private val viewModel : ElectionsViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        val application = activity.application
+        val dataSource = ElectionDatabase.getInstance(application).electionDao
+        val viewModelFactory = ElectionsViewModelFactory(dataSource)
+
+        ViewModelProvider(this, viewModelFactory).get(ElectionsViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -24,25 +40,17 @@ class ElectionsFragment: Fragment() {
         val binding: FragmentElectionBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_election, container, false)
 
-        //Add ViewModel values and create ViewModel
-        val application = requireNotNull(this.activity).application
-
-        val dataSource = ElectionDatabase.getInstance(application).electionDao
-
-        val viewModelFactory = ElectionsViewModelFactory(dataSource)
-
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(ElectionsViewModel::class.java)
-
-        binding.viewmodel = viewModel
-        binding.lifecycleOwner = this.viewLifecycleOwner
-
-
         //TODO: Add binding values
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
         //TODO: Link elections to voter info
 
         //TODO: Initiate recycler adapters
+        binding.upcomingElectionsList.adapter = ElectionListAdapter(ElectionListener {
+            // When an election is clicked this block or lambda will be called by ElectionAdapter
+            Timber.i("election clicked: %s", it.name)
+        })
 
         //TODO: Populate recycler adapters
 
