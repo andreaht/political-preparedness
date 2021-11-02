@@ -7,5 +7,10 @@
     <string name="saved_elections">Saved Elections</string>
 
     <!-- TODO: Add necessary string values -->
+    <string name="follow_election">follow election</string>
+    <string name="unfollow_election">unfollow election</string>
+    <string name="state_info">Election Information</string>
+    <string name="voting_locations">Voting Locations</string>
+    <string name="ballot_information">Ballot Information</string>
 
 </resources>

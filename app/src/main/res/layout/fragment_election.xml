@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/upcoming_title"
-            style="@style/whiteBox"
+            style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/upcoming_elections"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/saved_title"
-            style="@style/whiteBox"
+            style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/saved_elections"

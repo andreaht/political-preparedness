@@ -27,10 +27,13 @@ interface ElectionDao {
      * @param id election_id to match
      */
     @Query("SELECT * from election_table WHERE id = :id")
-    suspend fun get(id: Long): Election?
+    fun get(id: Int): Election?
+
+    @Query("SELECT EXISTS(SELECT * from election_table WHERE id = :id)")
+    fun exists(id: Int): LiveData<Boolean>
 
     @Query("DELETE FROM election_table WHERE id = :id")
-    suspend fun deleteByElectionId(id: Long)
+    fun deleteByElectionId(id: Int)
 
     /**
      * Deletes all values from the table.
