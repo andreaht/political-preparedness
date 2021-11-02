@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
@@ -40,23 +42,39 @@ class ElectionsFragment: Fragment() {
         val binding: FragmentElectionBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_election, container, false)
 
-        //TODO: Add binding values
+        //Add binding values
         binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
-        //TODO: Link elections to voter info
+        //Link elections to voter info
+        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
+            election?.let {
 
-        //TODO: Initiate recycler adapters
+                this.findNavController().navigate(
+                    ElectionsFragmentDirections
+                        .actionElectionsFragmentToVoterInfoFragment(election.id,election.division))
+                viewModel.doneNavigating()
+                Timber.i("doneNavigating: %s", it.name)
+            }
+        })
+
+        //Initiate recycler adapters
+        //Populate recycler adapters
         binding.upcomingElectionsList.adapter = ElectionListAdapter(ElectionListener {
             // When an election is clicked this block or lambda will be called by ElectionAdapter
             Timber.i("election clicked: %s", it.name)
+            viewModel.onElectionClicked(it)
         })
 
-        //TODO: Populate recycler adapters
+        binding.savedElectionsList.adapter = ElectionListAdapter(ElectionListener {
+            // When an election is clicked this block or lambda will be called by ElectionAdapter
+            Timber.i("election clicked: %s", it.name)
+            viewModel.onElectionClicked(it)
+        })
+
 
         return binding.root
     }
 
-    //TODO: Refresh adapters when fragment loads
 
 }

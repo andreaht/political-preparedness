@@ -4,6 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.network.models.Election
 
+//Refresh adapters when fragment loads
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Election>?) {
     val adapter = recyclerView.adapter as ElectionListAdapter

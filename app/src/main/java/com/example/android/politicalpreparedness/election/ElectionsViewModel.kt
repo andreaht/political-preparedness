@@ -10,22 +10,22 @@ import com.example.android.politicalpreparedness.network.models.Election
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-//TODO: Construct ViewModel and provide election datasource
+//Construct ViewModel and provide election datasource
 class ElectionsViewModel(private val dataSource: ElectionDao): ViewModel() {
 
-    //TODO: Create live data val for upcoming elections
+    // Create live data val for upcoming elections
     private val _upcomingElections = MutableLiveData<List<Election>>()
     val upcomingElections : LiveData<List<Election>>
             get() = _upcomingElections
 
-    //TODO: Create live data val for saved elections
+    //Create live data val for saved elections
+    val savedElections = dataSource.getAllElections()
 
     init{
         getElections()
     }
 
-    //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
-
+    //Create val and functions to populate live data for upcoming elections from the API
     private fun getElections() {
         viewModelScope.launch {
             // Try statement is used to catch Network Exceptions so the app does not
@@ -39,6 +39,18 @@ class ElectionsViewModel(private val dataSource: ElectionDao): ViewModel() {
         }
     }
 
-    //TODO: Create functions to navigate to saved or upcoming election voter info
+    //Create functions to navigate to saved or upcoming election voter info
+    private val _navigateToVoterInfo = MutableLiveData<Election>()
+    val navigateToVoterInfo
+        get() = _navigateToVoterInfo
+
+    fun onElectionClicked(election: Election) {
+        _navigateToVoterInfo.value = election
+    }
+
+    fun doneNavigating() {
+        _navigateToVoterInfo.value = null
+    }
+
 
 }
