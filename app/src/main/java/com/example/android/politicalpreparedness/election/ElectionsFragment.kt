@@ -47,7 +47,7 @@ class ElectionsFragment: Fragment() {
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         //Link elections to voter info
-        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
+        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, { election ->
             election?.let {
 
                 this.findNavController().navigate(
@@ -71,7 +71,6 @@ class ElectionsFragment: Fragment() {
             Timber.i("election clicked: %s", it.name)
             viewModel.onElectionClicked(it)
         })
-
 
         return binding.root
     }

@@ -21,5 +21,7 @@
     <string name="zip">Zip</string>
     <string name="use_my_location">use my location</string>
     <string name="my_representative">My Representatives</string>
+    <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
+    <string name="settings">Settings</string>
 
 </resources>
