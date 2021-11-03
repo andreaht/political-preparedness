@@ -22,6 +22,7 @@
             style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_half"
             android:text="@string/upcoming_elections"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,19 +31,21 @@
             android:id="@+id/upcoming_elections_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:listData="@{viewModel.upcomingElections}"
+            android:layout_margin="@dimen/margin_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/saved_title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.45"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/upcoming_title"
-            app:layout_constraintHeight_percent="0.5"/>
+            app:listData="@{viewModel.upcomingElections}" />
 
         <TextView
             android:id="@+id/saved_title"
             style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_half"
             android:text="@string/saved_elections"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/upcoming_elections_list" />
@@ -51,11 +54,12 @@
             android:id="@+id/saved_elections_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:listData="@{viewModel.savedElections}"
+            android:layout_margin="@dimen/margin_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/saved_title"/>
+            app:layout_constraintTop_toBottomOf="@id/saved_title"
+            app:listData="@{viewModel.savedElections}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

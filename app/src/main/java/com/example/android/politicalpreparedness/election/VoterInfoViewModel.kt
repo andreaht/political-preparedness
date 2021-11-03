@@ -60,7 +60,6 @@ class VoterInfoViewModel(
                 dataSource.deleteByElectionId(electionId)
             else
                 voterInfo.value?.let { dataSource.insert(it.election) }
-
         }
     }
 

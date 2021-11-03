@@ -22,8 +22,10 @@
             android:id="@+id/election_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
             android:padding="@dimen/default_padding"
             android:singleLine="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{viewModel.voterInfo.election.name}" />
 
@@ -33,12 +35,11 @@
             style="@style/textBoxContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_marginStart="16dp"
+            android:layout_margin="@dimen/margin_wide"
             android:visibility="@{viewModel.voterInfo.election.electionDay == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_name"
-            tools:text="@{viewModel.voterInfo.election.electionDay.toGMTString()}" />
+            tools:text="@{viewModel.voterInfo.election.electionDay.toString()}" />
 
         <!-- Add visual styling and content -->
         <TextView
@@ -46,34 +47,34 @@
             style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
             android:text="@string/state_info"
             android:visibility="@{(viewModel.voterInfo.state[0].electionAdministrationBody.electionInfoUrl == null &amp;&amp; viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl == null ) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
 
-        <!-- TODO: Add click binding to open web URL -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- Add click binding to open web URL -->
+        <!-- Add visual styling and content -->
         <TextView
             android:id="@+id/state_locations"
             style="@style/textBoxContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
             android:onClick="@{()->viewModel.setUrl(viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl)}"
             android:text="@string/voting_locations"
             android:visibility="@{(viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl == null) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/state_header" />
 
-        <!-- TODO: Add click binding to open web URL -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- Add click binding to open web URL -->
+        <!-- Add visual styling and content -->
         <TextView
             android:id="@+id/state_ballot"
             style="@style/textBoxContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
             android:onClick="@{()->viewModel.setUrl(viewModel.voterInfo.state[0].electionAdministrationBody.electionInfoUrl)}"
             android:text="@string/ballot_information"
             android:visibility="@{(viewModel.voterInfo.state[0].electionAdministrationBody.electionInfoUrl == null) ? View.GONE : View.VISIBLE}"
@@ -84,24 +85,30 @@
             android:id="@+id/address_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
             app:constraint_referenced_ids="state_correspondence_header,address" />
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- Add visual styling and content -->
         <TextView
             android:id="@+id/state_correspondence_header"
+            style="@style/textBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
+            android:text="@string/address"
+            android:visibility="@{(viewModel.voterInfo.state[0].electionAdministrationBody.correspondenceAddress == null) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/state_ballot" />
 
-        <!-- TODO: Add data binding -->
+        <!-- Add data binding -->
         <TextView
             android:id="@+id/address"
+            style="@style/textBoxContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
+            android:layout_margin="@dimen/margin_wide"
+            android:text="@{viewModel.voterInfo.state.get(0).electionAdministrationBody.correspondenceAddress.toFormattedString()}"
+            android:visibility="@{(viewModel.voterInfo.state[0].electionAdministrationBody.correspondenceAddress == null) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/state_correspondence_header" />
 

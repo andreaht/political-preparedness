@@ -33,7 +33,7 @@ interface ElectionDao {
     fun exists(id: Int): LiveData<Boolean>
 
     @Query("DELETE FROM election_table WHERE id = :id")
-    fun deleteByElectionId(id: Int)
+    suspend fun deleteByElectionId(id: Int)
 
     /**
      * Deletes all values from the table.
