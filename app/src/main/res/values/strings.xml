@@ -6,12 +6,20 @@
     <string name="ballot_logo">ballot logo</string>
     <string name="saved_elections">Saved Elections</string>
 
-    <!-- TODO: Add necessary string values -->
+    <!-- Add necessary string values -->
     <string name="follow_election">follow election</string>
     <string name="unfollow_election">unfollow election</string>
     <string name="state_info">Election Information</string>
     <string name="voting_locations">Voting Locations</string>
     <string name="ballot_information">Ballot Information</string>
     <string name="address">Address</string>
+    <string name="representative_search">Representative Search</string>
+    <string name="address_line1">Address Line 1</string>
+    <string name="address_line2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="zip">Zip</string>
+    <string name="use_my_location">use my location</string>
+    <string name="my_representative">My Representatives</string>
 
 </resources>

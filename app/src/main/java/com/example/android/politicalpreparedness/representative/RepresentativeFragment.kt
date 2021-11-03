@@ -28,7 +28,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_election, container, false)
+        val root = inflater.inflate(R.layout.fragment_representative, container, false)
         binding = FragmentRepresentativeBinding.bind(root).apply {
             this.viewmodel = viewModel
         }
@@ -80,7 +80,7 @@ class DetailFragment : Fragment() {
 
     private fun hideKeyboard() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
 }
