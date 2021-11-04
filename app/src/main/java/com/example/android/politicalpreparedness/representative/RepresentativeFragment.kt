@@ -60,11 +60,13 @@ class DetailFragment : Fragment() {
 
         //Establish button listeners for field and location search
         binding.buttonLocation.setOnClickListener {
+            hideKeyboard()
             if (checkLocationPermissions())
                 getLocation()
         }
 
         binding.buttonSearch.setOnClickListener {
+            hideKeyboard()
             /*val address = Address(
                 binding.addressLine1.text.toString(),
                 binding.addressLine2.text.toString(),
