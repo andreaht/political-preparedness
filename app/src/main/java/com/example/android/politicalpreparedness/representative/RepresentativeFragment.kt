@@ -67,15 +67,15 @@ class DetailFragment : Fragment() {
 
         binding.buttonSearch.setOnClickListener {
             hideKeyboard()
-            /*val address = Address(
+            val address = Address(
                 binding.addressLine1.text.toString(),
                 binding.addressLine2.text.toString(),
                 binding.city.text.toString(),
                 binding.state.selectedItem.toString(),
                 binding.zip.text.toString()
-            )*/
+            )/*
             val address =
-                Address("Amphitheatre Parkway", "1600", "Mountain View", "California", "94043")
+                Address("Amphitheatre Parkway", "1600", "Mountain View", "California", "94043")*/
             viewModel.setAddress(address)
         }
 
